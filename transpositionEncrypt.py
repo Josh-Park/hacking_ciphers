@@ -3,13 +3,14 @@
 import pyperclip
 
 def main():
-    myMessage = "Common sense is not so common"
-    myKey = 8
+    print("Enter message to encrypt: ")
+    myMessage = input()
+    print("Enter key: ")
+    myKey = int(input())
 
     ciphertext = encryptMessage(myKey, myMessage)
 
     print(ciphertext + "|")
-
     pyperclip.copy(ciphertext)
 
 def encryptMessage(key, message):
