@@ -4,16 +4,16 @@ import pyperclip
 
 def main():
     print("Enter message to encrypt: ")
-    myMessage = input()
+    message = input()
     print("Enter key: ")
-    myKey = int(input())
+    key = int(input())
 
-    ciphertext = encryptMessage(myKey, myMessage)
+    ciphertext = encrypt_message(key, message)
 
     print(ciphertext + "|")
     pyperclip.copy(ciphertext)
 
-def encryptMessage(key, message):
+def encrypt_message(key, message):
     #Each string in ciphertext array represents column
     ciphertext = [""] * key
 
