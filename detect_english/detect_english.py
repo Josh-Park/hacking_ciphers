@@ -8,7 +8,10 @@ This can be downloaded from https://github.com/dwyl/english-words
 """
 
 import json
+import time
 
+
+time_start = time.time()
 UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 ALPHABET = UPPER_LETTERS + UPPER_LETTERS.lower() + " \t\n"
 
@@ -44,7 +47,7 @@ def remove_non_letters(message):
 
     return "".join(parsed_string)
 
-def is_english(message, percentage_words = 20, percentage_letters = 85):
+def is_english(message, percentage_words = 75, percentage_letters = 85):
     """
     By default 20% of the words must exist in the dictionary file
     85% of all the characters in the message must be letters or spaces (not special chars or numbers)
@@ -57,9 +60,23 @@ def is_english(message, percentage_words = 20, percentage_letters = 85):
     return msg_words_match and msg_letters_match 
 
 def main():
-    while(True):
-        user_input = input()
-        print(is_english(user_input))
+    text_file = open("frankenstein.txt")
+    text = text_file.read()
+    text_file.close()
+
+    time_elapsed = time.time() - time_start
+
+    print("Is in english: %s" % (is_english(text)))
+    print(format("Time elapsed: %s seconds" % (format(time_elapsed, ".5f"))))
+    # while(True):
+    #     # user_input = input()
+    #     time_start = time.time()
+    #     text_file = open("frankenstein.txt")
+    #     text = text_file.read()
+    #     text_file.close()
+    #     time_end = time.time() - time_start
+    #     print(is_english(text))
+    #     print(time_end)
 
 if __name__ == "__main__":
     main()
