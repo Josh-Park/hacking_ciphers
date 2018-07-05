@@ -3,8 +3,8 @@ Importing and using module:
 import detect_english
 detect_english.is_english(string) #Returns True or False
 
-Note: There must be a 'dictionary.txt' file in the root directory with one word on each line
-This can be downloaded from https://www.nostarch.com/crackingcodes/
+Note: There must be a 'words_dictionary.json' file in the root directory with one word on each line
+This can be downloaded from https://github.com/dwyl/english-words
 """
 
 import json
@@ -16,13 +16,6 @@ def load_dictionary():
     with open("words_dictionary.json") as dictionary_file:
         english_words = json.loads(dictionary_file.read())
         
-    # dictionary_file = open("dictionary.txt")
-    # english_words = {}
-
-    # for word in dictionary_file.read():
-    #     english_words[word] = None
-
-    # dictionary_file.close()
     return english_words
 
 ENGLISH_WORDS = load_dictionary()
@@ -51,15 +44,15 @@ def remove_non_letters(message):
 
     return "".join(parsed_string)
 
-def is_english(message, percentage_word = 20, percentage_letter = 85):
+def is_english(message, percentage_words = 20, percentage_letters = 85):
     """
     By default 20% of the words must exist in the dictionary file
     85% of all the characters in the message must be letters or spaces (not special chars or numbers)
     """
-    msg_words_match = match_percentage(message) * 100 >= percentage_word
+    msg_words_match = match_percentage(message) * 100 >= percentage_words
     msg_num_letters = len(remove_non_letters(message))
     msg_percentage_letter = (float(msg_num_letters) / len(message)) * 100
-    msg_letters_match = msg_percentage_letter >= percentage_letter
+    msg_letters_match = msg_percentage_letter >= percentage_letters
 
     return msg_words_match and msg_letters_match 
 
