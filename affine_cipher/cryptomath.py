@@ -1,5 +1,5 @@
 
-# Uses Euclidean algorithm to get greatest common denominator of two numbers
+# Uses Euclidean algorithm to get greatest common divisor of two numbers
 def gcd(a, b):
     while a != 0:
         a, b = b % a, a

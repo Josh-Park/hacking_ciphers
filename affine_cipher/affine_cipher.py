@@ -8,8 +8,8 @@ SYMBOLS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?."
 def main():
     # message = "'A computer would deserve to be called intelligent if it could deceive a human into believing that it was human.' -Alan Turing"
     message = "'5QG9ol3La6QI93!xQxaia6faQL9QdaQG1!!axQARLa!!AuaRLQADQALQG93!xQxaGaAfaQ1QX3o1RQARL9Qda!aAfaARuQLX1LQALQI1iQX3o1RN'Q-5!1RQP36ARu"
-    key = random_key()
-    mode = "encrypt" #Can be set to encrypt or decrypt
+    key = 2894
+    mode = "decrypt" #Can be set to encrypt or decrypt
 
     if mode == "encrypt":
         translated = encrypt_message(key, message)
@@ -62,6 +62,9 @@ def decrypt_message(key, message):
     for char in message:
         if char in SYMBOLS:
             char_index = SYMBOLS.find(char)
+            first_int = char_index - key_b
+            second_int = first_int / key_a
+            last_int = second_int % len(SYMBOLS)
             plaintext += SYMBOLS[(char_index - key_b) * key_a_mod_inverse % len(SYMBOLS)]
         else:
             plaintext += char
