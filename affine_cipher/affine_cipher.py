@@ -33,9 +33,9 @@ def check_keys(key_a, key_b, mode):
     if key_a == 1 and mode == "encrypt":
         sys.exit("Cipher is weak if key A is 1. Choose a different key")
     if key_b == 0 and mode == "encrypt":
-        sys.exit("Cipher is weak is key B is 0. Choose a different key")
+        sys.exit("Cipher is weak if key B is 0. Choose a different key")
     if key_a < 0 or key_b < 0 or key_b > len(SYMBOLS) - 1:
-        sys.exit("Key A but be greater than 0 and Key B must be between 0 and %s" % (len(SYMBOLS) - 1))
+        sys.exit("Key A must be greater than 0 and Key B must be between 0 and %s" % (len(SYMBOLS) - 1))
     if cryptomath.gcd(key_a, len(SYMBOLS)) != 1:
         sys.exit("Key A (%s) and the symbol set side (%s) are not relatively prime. Choose a different key" % (key_a, len(SYMBOLS)))
 
